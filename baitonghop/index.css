@@ -1,0 +1,91 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.body{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 60%;
+}
+#cards{
+    padding: 10px 0;
+    margin: 10x 0;
+    border-bottom: 1px solid silver;
+    display: flex;
+}
+.cardChoose{
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    margin-right: 10px;
+}
+.choose{
+    border: 2px solid rgb(80, 130, 209);
+
+}
+#cardone{
+    background-image: url(./images/anh1.jpg);
+    background-size: 68px 35px;
+    background-repeat: no-repeat;
+}
+#cardtwo{
+    background-image: url(./images/anh2.jpg);
+    background-size: 60px 35px;
+    background-repeat: no-repeat;
+}
+#cardthree{
+    background-image: url(./images/anh3.jpg);
+    background-size: 60px 35px;
+    background-repeat: no-repeat;
+}
+#cardfour{
+    background-image: url(./images/anh4.jpg);
+    background-size: 55px 35px;
+    background-repeat: no-repeat;
+}
+#cardfive{
+    background-image: url(./images/anh5.jpg);
+    background-size: 55px 35px;
+    background-repeat: no-repeat;
+}
+.contain{
+    display: flex;
+    padding: 10px 0;
+}
+.inputNum{
+    width: 100px;
+    margin: 10px 30px 10px 0;
+    
+}
+#save{
+    width: 80px;
+    border-radius: 50px;
+    background-color: rgb(80, 130, 209);
+    color: white;
+    border-color: white;
+}
+.table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+td{
+    border: 1px solid black;
+    padding: 10px;
+}
+tr{
+    border: 1px solid black;
+}
+.imgInfo{
+    width: 60px;
+    height: 35px;
+}
+.button{
+    padding: 0 5px;
+}
+.change{
+    background-color:rgb(80, 130, 209);
+}

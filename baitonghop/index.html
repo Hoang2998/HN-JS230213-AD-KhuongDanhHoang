@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="body">
+        <h1>Select Card</h1>
+        <div id="cards">
+            <div class="cardChoose" id="cardone" ></div>
+            <div class="cardChoose" id="cardtwo" ></div>
+            <div class="cardChoose" id="cardthree" ></div>
+            <div class="cardChoose" id="cardfour" ></div>
+            <div class="cardChoose" id="cardfive"></div>
+        </div>
+        <p>Card Number</p>
+        <input type="number" id="numberCard">
+        <div class="contain">
+            <div>
+                <p>Expiry Date</p>
+                <input type="text" id="date" class="inputNum" placeholder="MM/YY">
+            </div>
+            <div>
+                <p> CVC/CVV</p>
+                <input type="password" id="cvc" class="inputNum">
+            </div>
+        </div>
+        <button id="save" onclick="saveInfo()">Save</button>
+        </div>
+    <br><br>
+    <table class="table">
+        <tr>
+            <td>Card Img</td>
+            <td>Card Number</td>
+            <td>Expiry Date</td>
+            <td>CVV</td>
+            <td>Action</td>
+        </tr>
+        <tbody id="inforTable"></tbody>
+    </table>
+    <script>
+        let cardChoose = document.getElementsByClassName("cardChoose")
+        let users = [];
+        let images = ["./images/anh1.jpg","./images/anh2.jpg","./images/anh3.jpg","./images/anh4.jpg","./images/anh5.jpg"]
+        let numberCard = document.getElementById("numberCard")
+        let date = document.getElementById("date")
+        let cvc = document.getElementById("cvc")
+        let inforTable = document.getElementById("inforTable")
+        let image = 0
+        for(let i=0;i<5;i++){
+            cardChoose[i].onclick=()=>{
+            cardChoose[i].classList.add("choose");
+            image = i;
+            for(let j=0;j<5;j++){
+                if(j!=i){
+                    cardChoose[j].classList.remove("choose");  
+                }
+            }
+        }
+        }
+        function saveInfo(){
+            if(flag == "save"){
+            let number = numberCard.value
+            let dated = date.value
+            let cvcc = cvc.value
+            let obj = {
+                cardNumber:number,
+                date:dated,
+                cvc:cvcc,
+                id:uuid(),
+                imageCard:image
+            }
+            console.log(obj)
+            users.push(obj);
+            render(users)
+            cardChoose[image].classList.remove("choose")
+        }else{
+            editItem(indexUpdate);
+            flag = "save"
+            save.innerHTML ="save"
+           
+
+        }
+        indexUpdate = 0;
+        numberCard.value="";
+        date.value="";
+        cvc.value="";
+        image = 0;
+        }
+        function uuid() {
+                return Math.floor(Math.random() * 999999) + new Date().getMilliseconds();
+            }
+        function deleteItem(index){
+            users.splice(index,1)
+            render(users)
+        }
+        let flag = "save"
+        let indexUpdate = 0;
+        let button = document.getElementsByClassName("button")
+        function noteEdit(index){
+            flag = "update"
+            save.innerHTML="edit"
+            numberCard.value = users[index].cardNumber
+            date.value = users[index].date
+            cvc.value = users[index].cvc
+            image = users[index].imageCard
+            indexUpdate = index
+            cardChoose[image].classList.add("choose");
+        }
+        let imageItem = document.getElementsByTagName("img")
+
+        function editItem(index){
+            imageItem[index].src=images[index]
+            users[index].cardNumber = numberCard.value;
+            users[index].date = date.value;
+            users[index].cvc = cvc.value;
+            cardChoose[image].classList.remove("choose");
+            render(users)
+
+        }
+        console.log(inforTable)
+        function  render(arr){
+            let text=""
+            for(let i=0;i<arr.length;i++){
+                text += `
+                 <tr>
+                    <td class="imageItem"><img src=${images[arr[i].imageCard]} class="imgInfo"></td>
+                    <td>${arr[i].cardNumber}</td>
+                    <td>${arr[i].date}</td>
+                    <td>${arr[i].cvc}</td>
+                    <td>
+                        <button class="button" onclick="view(${i})">View</button>
+                        <button class="button" onclick="noteEdit(${i})">Edit</button>
+                        <button class="button" onclick="deleteItem(${i})">Delete</button>
+                    </td>
+                </tr>
+                `
+                console.log(text)
+            }
+            inforTable.innerHTML = text
+        }
+       
+    </script>
+</body>
+</html>
